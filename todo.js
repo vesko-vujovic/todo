@@ -18,27 +18,23 @@ $(document).ready(function(){
      	return false;
      }	
    }
+   
    // function to add cookie
-
    function addCookie(inputValue)
    {   
    	   globalObj = {text: ''+ inputValue+'', completed: 'false'};
-   	   $.cookie('vesko', ''+ globalObj + '');
+   	   $.cookie('vesko', '' + globalObj.text + '');
+   	  
 
    }
-
 
    // function to list data from object-cookie
 
    function readCookie()
    { 
-   	 var listCookie = $.cookie("vesko");
+   	 var listCookie = $.cookie('vesko');
 
-    $.each(listCookie, function (index, value){
-   		list.after('<li>'+ value + '</li>');
-
-   	});
-
+   	 list.after('<li>' + listCookie + '</li>');   
 
    }
 
