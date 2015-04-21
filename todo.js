@@ -28,24 +28,21 @@ $(document).ready(function(){
    }
 
    // function to list data from object-cookie
-
    function readCookie()
    { 
    	 var listCookie = $.cookie('vesko');
 
-   	 list.after('<p><input type="checkbox">'  + listCookie  +'<button id="del">Delete</button></p>');   
+   	 list.after('<li><input type="checkbox">'  + listCookie  +'<button class="delete">Delete</button></li>');   
    }
-   
-   //function for deleting a node
-   function deleteNode()
+
+   //function for deleting nodes
+   function removeNode()
    {
    	 $(this).parent().remove();
-
    }
 
-
-
-    
+   
+   
    //event  function to add task 
    $('#add').click(function(event){
    	 event.preventDefault();
@@ -61,10 +58,11 @@ $(document).ready(function(){
      
    });
 
-   //event function to remove node element
-   $('#del').click(function(){
-     $(this).parent().remove();
-   });
+   //event to delete nodes
+   $('.delete').on('click', removeNode);
+   
+
+
    
 
 
