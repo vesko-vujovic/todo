@@ -22,8 +22,7 @@ $(document).ready(function(){
 
    function addCookie(inputValue)
    {   
-   	   globalObj = '{"name":"John Johnson","street":"Oslo West 16","phone":"555 1234567"}';
-
+   	   globalObj = ''+ {"text": ""+ inputValue + "", "completed": "false"}  +''
 
    	   $.cookie("vesko", globalObj);
 
@@ -54,9 +53,10 @@ $(document).ready(function(){
    	 event.preventDefault();
    	 var textField = inputText.val();
      var state     = checkTextField(textField)
-
+     
      if(!state === true)
      {   
+     	alert(''+ textField +'');
      	addCookie(textField);
      	readCookie();
         
