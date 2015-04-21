@@ -1,8 +1,7 @@
 $(document).ready(function(){
    var msg     = $('#danger').hide();
    var inputText = $('#todo');
-   var globalObj = {};
-   var list      = $
+   var globalObj;
 
 
    function checkTextField(input)
@@ -24,14 +23,16 @@ $(document).ready(function(){
    //function to add task 
    $('#add').click(function(event){
    	 event.preventDefault();
-   	 var textField = inputText.val()
+   	 var textField = inputText.val();
      var state     = checkTextField(textField)
 
      if(!state === true)
      {
-     	globalObj.task  = textField;
+     	globalObj = {text: ""+textField+"", completed: false}
 
-     	 $.each(globalObj, function(index, value) {
+     	var obj = $.cookie('name', globalObj);
+
+     	 $.each(obj, function(index, value) {
      		$('#list').after('<li>' + value + '<button id="del" class="btn btn-default">delete </button>' + '</li>');
      	}); 
      }
