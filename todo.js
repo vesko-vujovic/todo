@@ -1,7 +1,7 @@
 $(document).ready(function(){
    var msg     = $('#danger').hide();
    var inputText = $('#todo');
-   var globalObj;
+   var globalObj = {};
 
 
    function checkTextField(input)
@@ -28,12 +28,11 @@ $(document).ready(function(){
 
      if(!state === true)
      {
-     	globalObj = {text: ""+textField+"", completed: false}
-
-     	var obj = $.cookie('name', globalObj);
-
-     	 $.each(obj, function(index, value) {
-     		$('#list').after('<li>' + value + '<button id="del" class="btn btn-default">delete </button>' + '</li>');
+     	 globalObj.text      = textField;
+     	 globalObj.completed = false;
+     	 $.cookie("tasks", globalObj, {expires: 1});
+     	 $.each($.parseJSON($.cookie("tasks")), function(index, value) {
+     		$('#list').after('<li>' + value.text + '<button id="del" class="btn btn-default">delete </button>' + '</li>');
      	}); 
      }
      
