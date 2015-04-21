@@ -28,11 +28,10 @@ $(document).ready(function(){
 
      if(!state === true)
      {
-     	 globalObj.text      = textField;
-     	 globalObj.completed = false;
+     	 globalObj     = {text: ''+ textField +'', completed: false};   
      	 $.cookie("tasks", globalObj, {expires: 1});
-     	 $.each($.cookie(), function(index, value) {
-     		$('#list').after('<li>' + value + '<button id="del" class="btn btn-default">delete </button>' + '</li>');
+     	 $.each($.cookie("tasks"), function(index, value) {
+     		$('#list').after('<li>' + value.tasks + '<button id="del" class="btn btn-default">delete </button>' + '</li>');
      	}); 
      }
      
