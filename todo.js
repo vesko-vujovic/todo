@@ -33,18 +33,17 @@ $(document).ready(function(){
    { 
    	 var listCookie = $.cookie('vesko');
 
-   	 list.after('<li>' + listCookie + '</li>');   
-
+   	 list.after('<p><input type="checkbox">'  + listCookie  +'<button id="del">Delete</button></p>');   
    }
    
    //function for deleting a node
-   function deleteElement()
+   function deleteNode()
    {
+   	 $(this).parent().remove();
 
    }
 
 
- 
 
     
    //event  function to add task 
@@ -62,6 +61,10 @@ $(document).ready(function(){
      
    });
 
+   //event function to remove node element
+   $('#del').click(function(){
+     $(this).parent().remove();
+   });
    
 
 
