@@ -22,9 +22,8 @@ $(document).ready(function(){
    // function to add cookie
    function addCookie(inputValue)
    {   
-   	   globalObj = {text: ''+ inputValue+'', completed: 'false'};
-   	   $.cookie('vesko', '' + globalObj.text + '');
-   	  
+   	   globalObj = {text: ''+ inputValue+''};
+   	   $.cookie('vesko', '' +  globalObj.text + '');
 
    }
 
@@ -37,9 +36,15 @@ $(document).ready(function(){
    	 list.after('<li>' + listCookie + '</li>');   
 
    }
+   
+   //function for deleting a node
+   function deleteElement()
+   {
+
+   }
 
 
-   //function to delete tasks
+ 
 
     
    //event  function to add task 
