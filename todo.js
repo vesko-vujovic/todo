@@ -31,8 +31,8 @@ $(document).ready(function(){
      	 globalObj.text      = textField;
      	 globalObj.completed = false;
      	 $.cookie("tasks", globalObj, {expires: 1});
-     	 $.each($.parseJSON($.cookie("tasks")), function(index, value) {
-     		$('#list').after('<li>' + value.text + '<button id="del" class="btn btn-default">delete </button>' + '</li>');
+     	 $.each($.cookie(), function(index, value) {
+     		$('#list').after('<li>' + value + '<button id="del" class="btn btn-default">delete </button>' + '</li>');
      	}); 
      }
      
