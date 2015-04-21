@@ -20,14 +20,12 @@ $(document).ready(function(){
    }
    // function to add cookie
 
-   function addCookie(value)
+   function addCookie(inputValue)
    {   
-   	   globalObj           = new Object();
-   	   globalObj.text      = ''+ value +'';
-   	   globalObj.completed = false;
-       
+   	   globalObj = '{"name":"John Johnson","street":"Oslo West 16","phone":"555 1234567"}';
 
-   	   $.cookie("vesko", globalObj);
+
+   	   $.cookie("vesko", parsedObj);
 
    }
 
