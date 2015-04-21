@@ -22,8 +22,7 @@ $(document).ready(function(){
 
    function addCookie(inputValue)
    {   
-   	   globalObj = ''+ {"text": ""+ inputValue + "", "completed": "false"}  +''
-
+   	   globalObj = {text: ''+inputValue+'', completed: false};
    	   $.cookie("vesko", globalObj);
 
    }
@@ -34,10 +33,9 @@ $(document).ready(function(){
    function readCookie()
    { 
    	 var listCookie = $.cookie("vesko");
-   	 var obj        = $.parseJSON(''+ listCookie +'');
 
-    $.each(obj, function (index, value){
-   		list.after('<li>'+ value + '</li>');
+    $.each($.parseJSON(listCookie), function (index, value){
+   		list.after('<li>'+ value.text + '</li>');
 
    	});
 
@@ -51,12 +49,14 @@ $(document).ready(function(){
    //event  function to add task 
    $('#add').click(function(event){
    	 event.preventDefault();
+     console.log(''+ $.cookie("tamo") +'');
+
+
    	 var textField = inputText.val();
      var state     = checkTextField(textField)
      
      if(!state === true)
      {   
-     	alert(''+ textField +'');
      	addCookie(textField);
      	readCookie();
         
