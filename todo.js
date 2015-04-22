@@ -38,44 +38,7 @@ $(document).ready(function(){
         list.after('<li id="member"><input type="checkbox">' + listCookie + '<button class="delete">Delete</button></li>');
     }
 
-<<<<<<< HEAD
-   //function for deleting nodes
-   
-   
-  
-   $('#add').click(function(event){
-   	 event.preventDefault();
-   	 var textField = inputText.val();
-     var state     = checkTextField(textField)
-     
-     if(!state === true)
-     {   
-     	addCookie(textField);
-     	readCookie();
-        
-     }
-     
-   }); */
 
-    //rewrited event for adding element
-    $('#add').on('click', function(){
-        event.preventDefault();
-        var textField = inputText.val();
-        var state     = checkTextField(textField)
-
-        if(!state === true)
-        {
-            addCookie(textField);
-            readCookie();
-
-        }
-    });
-
-   //event to delete nodes
-   $('.delete').on('click', function(){
-       $(this).parent().remove();
-   });
-=======
 
    $(function (){
        //event for invoking a function that calls other functions
@@ -89,21 +52,5 @@ $(document).ready(function(){
           $('input:checked').parent().remove();
        });
    });
-<<<<<<< HEAD
-=======
-  
-
->>>>>>> origin/master
-   
-   
-
-
-
-   
-
-
-
->>>>>>> origin/master
-
 
 });
