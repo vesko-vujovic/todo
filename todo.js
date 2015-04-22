@@ -36,14 +36,9 @@ $(document).ready(function(){
    }
 
    //function for deleting nodes
-   function removeNode()
-   {
-   	 $(this).parent().remove();
-   }
-
    
    
-   //event  function to add task 
+  
    $('#add').click(function(event){
    	 event.preventDefault();
    	 var textField = inputText.val();
@@ -56,10 +51,26 @@ $(document).ready(function(){
         
      }
      
-   });
+   }); */
+
+    //rewrited event for adding element
+    $('#add').on('click', function(){
+        event.preventDefault();
+        var textField = inputText.val();
+        var state     = checkTextField(textField)
+
+        if(!state === true)
+        {
+            addCookie(textField);
+            readCookie();
+
+        }
+    });
 
    //event to delete nodes
-   $('.delete').on('click', removeNode);
+   $('.delete').on('click', function(){
+       $(this).parent().remove();
+   });
    
 
 
