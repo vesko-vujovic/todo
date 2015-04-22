@@ -1,66 +1,49 @@
 $(document).ready(function(){
-   var msg     = $('#danger').hide();
+   var msg       = $('#danger').hide();
    var inputText = $('#todo');
    var list      = $('#list');
    var globalObj;
 
-   // function for check is field empty
-   function checkTextField(input)
-   { 
-     if(input == '')
-     {
-     	msg.show();
-     	return true;
-     }
-     else
-     {
-     	msg.hide();
-     	return false;
-     }	
-   }
-   
-   // function to add cookie
-   function addCookie(inputValue)
-   {   
-   	   globalObj = {text: ''+ inputValue+''};
-   	   $.cookie('vesko', '' +  globalObj.text + '');
-
-   }
-
-   // function to list data from object-cookie
-   function readCookie()
-   { 
-   	 var listCookie = $.cookie('vesko');
-
-   	 list.after('<li><input type="checkbox">'  + listCookie  +'<button class="delete">Delete</button></li>');   
-   }
-
-   //function for deleting nodes
-   function removeNode()
+   function addListElement(event)
    {
-   	 $(this).parent().remove();
+       event.preventDefault();
+       var input = inputText.val();
+       if( input == '')
+       {
+           msg.show();
+       }
+       else
+       {
+           msg.hide();
+           addCookie(input);
+           readCookie();
+       }
+
    }
 
-   
-   
-   //event  function to add task 
-   $('#add').click(function(event){
-   	 event.preventDefault();
-   	 var textField = inputText.val();
-     var state     = checkTextField(textField)
-     
-     if(!state === true)
-     {   
-     	addCookie(textField);
-     	readCookie();
-        
-     }
-     
+    function addCookie(inputValue)
+    {
+        globalObj = {text: ''+ inputValue+''};
+        $.cookie('vesko', '' +  globalObj.text + '');
+
+    }
+
+    function readCookie()
+    {
+        var listCookie = $.cookie('vesko');
+
+        list.after('<li><input type="checkbox">'  + listCookie  +'<button class="delete">Delete</button></li>');
+    }
+
+
+
+   $(function (){
+       $('#add').on('click', addListElement);
    });
 
-   //event to delete nodes
-   $('.delete').on('click', removeNode);
    
+   
+
 
 
    
