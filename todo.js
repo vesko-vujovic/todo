@@ -1,7 +1,7 @@
 $(document).ready(function(){
    var msg       = $('#danger').hide();
    var inputText = $('#todo');
-   //var list      = $('#list');
+   var list      = $('#list');
    var globalObj;
 
    //general function that will call other functions
@@ -33,17 +33,19 @@ $(document).ready(function(){
     {
         var listCookie = $.cookie('vesko');
 
-        $('#list').append('<li><input type="checkbox">' + listCookie + '<button class="delete">Delete</button></li>');
+        list.after('<li id="member"><input type="checkbox">' + listCookie + '<button id="delete">Delete</button></li>');
     }
 
 
 
    $(function (){
        $('#add').on('click', addListElement);
-       $('.delete').on('click', function(){
-         $('.delete').parent().remove();
+       //event for deleting a node
+       $(document).on('click', '#delete', function(){
+           $(this).parent().remove();
        });
    });
+  
 
    
    
