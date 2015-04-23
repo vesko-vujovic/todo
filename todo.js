@@ -35,7 +35,6 @@ $(document).ready(function(){
     {
         arrayOfObj.push(obj);
         convertToJson(arrayOfObj);
-        console.log(arrayOfObj);
     }
     //convert that array of objects to json
     function convertToJson(arrObj)
@@ -51,6 +50,14 @@ $(document).ready(function(){
     {
         var cook = $.cookie('tasks', converted)
         console.log(cook);
+        parseCookie();
+    }
+
+    // parse cookie with parseJSON
+    function parseCookie()
+    {
+        var parsedCookie = $.parseJSON($.cookie('tasks'));
+        console.log(parsedCookie);
 
     }
 
