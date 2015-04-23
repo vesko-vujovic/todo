@@ -61,7 +61,9 @@ $(document).ready(function(){
     //read parsed cookie
     function readParsedCookie(parsedCookie)
     {
-        });
+           var lastOne = parsedCookie.pop();
+           list.after('<li id="member"><input type="checkbox">' + lastOne.value + '<button class="delete">Delete</button></li>');
+
     }
 
 
