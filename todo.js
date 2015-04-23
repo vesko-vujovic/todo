@@ -22,60 +22,35 @@ $(document).ready(function(){
            inputText.val('');
        }
    }
-
     //function to create object
     function createObject(input)
     {
         obj = new Object();
         obj.name = "input";
         obj.value = ''+ input +'';
-        addobjectToArray(obj);
-
+        addObjectToArray(obj);
     }
-    //function to add obj to array
-    function addobjectToArray(obj)
+    //function to push this object
+    function addObjectToArray(obj)
     {
         arrayOfObj.push(obj);
         convertToJson(arrayOfObj);
+        console.log(arrayOfObj);
+    }
+    //convert that array of objects to json
+    function convertToJson(arrObj)
+    {
+        var convert = JSON.stringify(arrObj);
+        console.log(convert);
+        addToCookie(convert);
+
 
     }
-    // convert to JSON this string
-    function convertToJson(obj)
+    //add converted json array of objects to cookie
+    function addToCookie(converted)
     {
-        var converted = JSON.stringify(obj);
-        addToCookie(converted);
-
-    }
-
-    //add to cookie
-    function addToCookie(obj)
-    {
-        var cookie = $.cookie('vesko',obj);
-        parseJsonFromCookie(cookie);
-    }
-
-    //parse value from cookie
-    function parseJsonFromCookie(cookie)
-    {
-        var parsedJson = $.parseJSON(cookie);
-        printEverything(parsedJson);
-
-    }
-    //function to print everything
-    function printEverything(parsedJson)
-    {
-        
-
-    }
-
-
-
-
-    // function for reading cookie
-    function readDeserialized(deserialized)
-    {
-        var listValues = deserialized;
-        list.after('<li id="member"><input type="checkbox">' + listValues.input.replace(/['+']/g,"&nbsp") + '<button class="delete">Delete</button></li>');
+        var cook = $.cookie('tasks', converted)
+        console.log(cook);
 
     }
 
@@ -94,8 +69,5 @@ $(document).ready(function(){
           $('input:checked').parent().remove();
        });
 
-    $(function() {
-       parseJsonFromCookie();
-    });
 
 });
