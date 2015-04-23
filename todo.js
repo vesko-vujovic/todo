@@ -19,21 +19,27 @@ $(document).ready(function(){
            msg.hide();
            createObject(input);
            inputText.val('');
+           console.log(arrayOfObj);
        }
    }
-    //function for creating object
+    //call creation of object
     function createObject(input)
     {
-        obj = new Object();
-        obj.text = ''+ input +'';
-        addbjectToArray(obj);
+      obj = new templateObject(input);
+      addbjectToArray(obj);
+      console.log(obj);
+    }
+
+    //function for creating object
+    function templateObject(input)
+    {
+        this.text = ''+ input + '';
     }
 
     //function to add obj to array
     function addbjectToArray(obj)
     {
-        arrayOfObj  = obj;
-        console.log(obj);
+        arrayOfObj = obj;
         serializeObject(arrayOfObj);
     }
 
@@ -41,7 +47,6 @@ $(document).ready(function(){
     function serializeObject(obj)
     {
         var newSerializedObject = $.param(obj);
-        console.log(newSerializedObject);
         addToCookieSerializedObj(newSerializedObject);
     }
 
@@ -49,7 +54,6 @@ $(document).ready(function(){
     function addToCookieSerializedObj(serializedObj)
     {
         $.cookie('vesko', serializedObj);
-        console.log($.cookie('vesko'));
         deserializeObj();
     }
 
@@ -57,7 +61,6 @@ $(document).ready(function(){
     function deserializeObj()
     {
         var deserialized = $.deserialize($.cookie('vesko'))
-        console.log(deserialized);
         readDeserialized(deserialized);
     }
 
@@ -79,6 +82,10 @@ $(document).ready(function(){
        //event for deleting checked input fields
        $('#clear').on('click', function(){
           $('input:checked').parent().remove();
+       });
+
+       $(window).bind(function(){
+           alert('do yu realy want to leave');
        });
    });
 
