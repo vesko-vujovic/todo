@@ -26,25 +26,39 @@ $(document).ready(function(){
     {
         obj = new Object();
         obj.text = ''+ input +'';
-        serializeObject(obj);
+        addbjectToArray(obj);
     }
-    //function to add obj to array and serialize
+
+    //function to add obj to array
     function addbjectToArray(obj)
     {
         arrayOfObj  = obj;
-
+        console.log(obj);
+        serializeObject(arrayOfObj);
     }
-    //function to serialize object
-    function
 
+    //function to serialize object
+    function serializeObject(obj)
+    {
+        var newSerializedObject = $.serialize(obj);
+        console.log(newSerializedObject);
+        addToCookieSerializedObj(newSerializedObject);
+    }
 
     //function for adding value to cookie
-    function addCookie(inputValue)
+    function addToCookieSerializedObj(serializedObj)
     {
-        globalObj = {text: ''+ inputValue+''};
-        $.cookie('vesko', '' +  globalObj.text + '');
+        $.cookie('vesko', serializedObj);
+        console.log($.cookie('vesko'));
+        readCookie();
+    }
+
+    function deserializeObj()
+    {
 
     }
+
+
     // function for reading cookie
     function readCookie()
     {
