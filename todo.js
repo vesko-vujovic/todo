@@ -59,7 +59,10 @@ $(document).ready(function(){
     function deserializeObj()
     {
         var des = $.deserialize($.cookie('vesko'));
+        //i need this cookie for later
+        $.cookie('after',des.input);
         readDeserialized(des);
+
     }
 
     // function for reading cookie
@@ -68,16 +71,6 @@ $(document).ready(function(){
         var listValues = deserialized;
         list.after('<li id="member"><input type="checkbox">' + listValues.input.replace(/['+']/g,"&nbsp") + '<button class="delete">Delete</button></li>');
 
-    }
-
-    //function that will call function for deserialize and reading cookie
-    function readCookieAfterLoading()
-    {
-        var des = $.deserialize($.cookie('vesko'));
-        console.log(des);
-        list.each(des, function(index, value){
-            list.after('<li id="member"><input type="checkbox">' + value + '<button class="delete">Delete</button></li>')
-        });
     }
 
        //event for invoking a function that calls other functions
@@ -92,7 +85,11 @@ $(document).ready(function(){
        });
 
     $(function() {
-       readCookieAfterLoading();
+
+        $.each($.cookie('after'), function(index, value){
+            console.log(value);
+        })
+
     });
 
 });
