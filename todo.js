@@ -58,7 +58,15 @@ $(document).ready(function(){
     {
         var parsedCookie = $.parseJSON($.cookie('tasks'));
         console.log(parsedCookie);
-
+        readParsedCookie(parsedCookie);
+    }
+    //read parsed cookie
+    function readParsedCookie(parsedCookie)
+    {
+        parsedCookie.forEach( function (arrayItem)
+        {
+            
+        });
     }
 
 
