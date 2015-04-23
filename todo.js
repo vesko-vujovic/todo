@@ -53,19 +53,20 @@ $(document).ready(function(){
         deserializeObj();
     }
 
+    // function to deserialize object
     function deserializeObj()
     {
-
-
+        var deserialized = $.deserialize($.cookie('vesko'))
+        console.log(deserialized);
+        readDeserialized(deserialized);
     }
 
-
     // function for reading cookie
-    function readCookie()
+    function readDeserialized(deserialized)
     {
-        var listCookie = $.cookie('vesko');
+        var listValues = deserialized;
 
-        list.after('<li id="member"><input type="checkbox">' + listCookie + '<button class="delete">Delete</button></li>');
+        list.after('<li id="member"><input type="checkbox">' + listValues + '<button class="delete">Delete</button></li>');
     }
 
 
