@@ -5,6 +5,9 @@ $(document).ready(function(){
     var arrayOfObj = [];
     var obj;
 
+     var txt = $('#list li').text();
+    alert(''+ txt +'');
+
 
    //general function that will call other functions
    function addListElement(event)
@@ -40,32 +43,24 @@ $(document).ready(function(){
     function convertToJson(arrObj)
     {
         var convert = JSON.stringify(arrObj);
-        console.log(convert);
         addToCookie(convert);
-
 
     }
     //add converted json array of objects to cookie
     function addToCookie(converted)
     {
         var cook = $.cookie('tasks', converted)
-        console.log(cook);
         parseCookie();
     }
-
     // parse cookie with parseJSON
     function parseCookie()
     {
         var parsedCookie = $.parseJSON($.cookie('tasks'));
-        console.log(parsedCookie);
         readParsedCookie(parsedCookie);
     }
     //read parsed cookie
     function readParsedCookie(parsedCookie)
     {
-        parsedCookie.forEach( function (arrayItem)
-        {
-            
         });
     }
 
