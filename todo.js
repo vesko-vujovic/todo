@@ -36,31 +36,26 @@ $(document).ready(function(){
     function addobjectToArray(obj)
     {
         arrayOfObj.push(obj);
-        convertToString(arrayOfObj);
-        serializeObject(arrayOfObj);
-    }
+        convertToJson(arrayOfObj);
 
-    //function to serialize object
-    function serializeObject(arrObj)
+    }
+    // convert to JSON this string
+    function convertToJson(obj)
     {
-        var serializedObject = $.param(arrObj);
-        addToCookieSerializedObj(serializedObject);
+        var converted = JSON.stringify(obj);
+        addToCookie(converted);
 
     }
-    //function for adding value to cookie
-    function addToCookieSerializedObj(serializedObj)
+
+    //add to cookie
+    function addToCookie(obj)
     {
-        $.cookie('vesko', serializedObj);
-        deserializeObj();
+        var cookie = $.cookie('vesko',obj);
+        parseFromCookie();
     }
 
-    // function to deserialize object
-    function deserializeObj()
-    {
-        var des = $.deserialize($.cookie('vesko'));
-        readDeserialized(des);
 
-    }
+
 
     // function for reading cookie
     function readDeserialized(deserialized)
@@ -70,29 +65,9 @@ $(document).ready(function(){
 
     }
 
-    //function for reading cookie after
-    function convertToString(obj)
-    {
-        var conversion = JSON.stringify(obj);
-        $.cookie('after', conversion);
 
-    }
 
-    //parse json from cookie
-    function parseJsonFromCookie()
-    {
-        var parsedValue = $.parseJSON($.cookie('after'));
-        readAfterParse(parsedValue);
 
-    }
-
-    //read after parsing
-    function readAfterParse(parsed)
-    {
-        list.each(parsed, function(index, value){
-           $(this).after('<li id="member"><input type="checkbox">' + value + '<button class="delete">Delete</button></li>');
-        });
-    }
 
        //event for invoking a function that calls other functions
        $('#add').on('click', addListElement);
@@ -106,7 +81,7 @@ $(document).ready(function(){
        });
 
     $(function() {
-
+       parseJsonFromCookie();
     });
 
 });
