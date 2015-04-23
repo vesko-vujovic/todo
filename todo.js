@@ -51,7 +51,21 @@ $(document).ready(function(){
     function addToCookie(obj)
     {
         var cookie = $.cookie('vesko',obj);
-        parseFromCookie();
+        parseJsonFromCookie(cookie);
+    }
+
+    //parse value from cookie
+    function parseJsonFromCookie(cookie)
+    {
+        var parsedJson = $.parseJSON(cookie);
+        printEverything(parsedJson);
+
+    }
+    //function to print everything
+    function printEverything(parsedJson)
+    {
+        
+
     }
 
 
