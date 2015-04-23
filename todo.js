@@ -29,7 +29,6 @@ $(document).ready(function(){
         obj = new Object();
         obj.name = "input";
         obj.value = ''+ input +'';
-        console.log()
         addobjectToArray(obj);
 
     }
@@ -37,6 +36,7 @@ $(document).ready(function(){
     function addobjectToArray(obj)
     {
         arrayOfObj.push(obj);
+        convertToString(arrayOfObj);
         serializeObject(arrayOfObj);
     }
 
@@ -47,7 +47,6 @@ $(document).ready(function(){
         addToCookieSerializedObj(serializedObject);
 
     }
-
     //function for adding value to cookie
     function addToCookieSerializedObj(serializedObj)
     {
@@ -59,8 +58,6 @@ $(document).ready(function(){
     function deserializeObj()
     {
         var des = $.deserialize($.cookie('vesko'));
-        //i need this cookie for later
-        $.cookie('after',des.input);
         readDeserialized(des);
 
     }
@@ -71,6 +68,30 @@ $(document).ready(function(){
         var listValues = deserialized;
         list.after('<li id="member"><input type="checkbox">' + listValues.input.replace(/['+']/g,"&nbsp") + '<button class="delete">Delete</button></li>');
 
+    }
+
+    //function for reading cookie after
+    function convertToString(obj)
+    {
+        var conversion = JSON.stringify(obj);
+        $.cookie('after', conversion);
+
+    }
+
+    //parse json from cookie
+    function parseJsonFromCookie()
+    {
+        var parsedValue = $.parseJSON($.cookie('after'));
+        readAfterParse(parsedValue);
+
+    }
+
+    //read after parsing
+    function readAfterParse(parsed)
+    {
+        list.each(parsed, function(index, value){
+           $(this).after('<li id="member"><input type="checkbox">' + value + '<button class="delete">Delete</button></li>');
+        });
     }
 
        //event for invoking a function that calls other functions
@@ -85,10 +106,6 @@ $(document).ready(function(){
        });
 
     $(function() {
-
-        $.each($.cookie('after'), function(index, value){
-            console.log(value);
-        })
 
     });
 
