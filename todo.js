@@ -1,8 +1,9 @@
 $(document).ready(function(){
-    var msg       = $('#danger').hide();
-    var inputText = $('#todo');
-    var list      = $('#list');
-    var globalObj = {};
+    var msg        = $('#danger').hide();
+    var inputText  = $('#todo');
+    var list       = $('#list');
+    var arrayOfObj = [];
+    var obj;
 
    //general function that will call other functions
    function addListElement(event)
@@ -16,13 +17,27 @@ $(document).ready(function(){
        else
        {
            msg.hide();
-           addCookie(input);
-           readCookie();
+           createObject(input);
            inputText.val('');
-
        }
-
    }
+    //function for creating object
+    function createObject(input)
+    {
+        obj = new Object();
+        obj.text = ''+ input +'';
+        serializeObject(obj);
+    }
+    //function to add obj to array and serialize
+    function addbjectToArray(obj)
+    {
+        arrayOfObj  = obj;
+
+    }
+    //function to serialize object
+    function
+
+
     //function for adding value to cookie
     function addCookie(inputValue)
     {
