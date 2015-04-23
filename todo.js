@@ -5,6 +5,7 @@ $(document).ready(function(){
     var arrayOfObj = [];
     var obj;
 
+
    //general function that will call other functions
    function addListElement(event)
    {
@@ -19,35 +20,32 @@ $(document).ready(function(){
            msg.hide();
            createObject(input);
            inputText.val('');
-           console.log(arrayOfObj);
        }
    }
-    //call creation of object
+
+    //function to create object
     function createObject(input)
     {
-      obj = new templateObject(input);
-      addbjectToArray(obj);
-      console.log(obj);
-    }
+        obj = new Object();
+        obj.name = "input";
+        obj.value = ''+ input +'';
+        console.log()
+        addobjectToArray(obj);
 
-    //function for creating object
-    function templateObject(input)
-    {
-        this.text = ''+ input + '';
     }
-
     //function to add obj to array
-    function addbjectToArray(obj)
+    function addobjectToArray(obj)
     {
-        arrayOfObj = obj;
+        arrayOfObj.push(obj);
         serializeObject(arrayOfObj);
     }
 
     //function to serialize object
-    function serializeObject(obj)
+    function serializeObject(arrObj)
     {
-        var newSerializedObject = $.param(obj);
-        addToCookieSerializedObj(newSerializedObject);
+        var serializedObject = $.param(arrObj);
+        addToCookieSerializedObj(serializedObject);
+
     }
 
     //function for adding value to cookie
@@ -60,16 +58,16 @@ $(document).ready(function(){
     // function to deserialize object
     function deserializeObj()
     {
-        var deserialized = $.deserialize($.cookie('vesko'))
-        readDeserialized(deserialized);
+        var des = $.deserialize($.cookie('vesko'));
+        readDeserialized(des);
     }
 
     // function for reading cookie
     function readDeserialized(deserialized)
     {
         var listValues = deserialized;
-
-        list.after('<li id="member"><input type="checkbox">' + listValues.text + '<button class="delete">Delete</button></li>');
+        list.after('<li id="member"><input type="checkbox">' + listValues.input.replace('+', '&nbsp') + '<button class="delete">Delete</button></li>');
+        console.log()
     }
 
    $(function (){
