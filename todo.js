@@ -50,11 +50,12 @@ $(document).ready(function(){
     {
         $.cookie('vesko', serializedObj);
         console.log($.cookie('vesko'));
-        readCookie();
+        deserializeObj();
     }
 
     function deserializeObj()
     {
+
 
     }
 
