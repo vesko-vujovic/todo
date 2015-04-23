@@ -40,7 +40,7 @@ $(document).ready(function(){
     //function to serialize object
     function serializeObject(obj)
     {
-        var newSerializedObject = $.serialize(obj);
+        var newSerializedObject = $.param(obj);
         console.log(newSerializedObject);
         addToCookieSerializedObj(newSerializedObject);
     }
@@ -66,10 +66,8 @@ $(document).ready(function(){
     {
         var listValues = deserialized;
 
-        list.after('<li id="member"><input type="checkbox">' + listValues + '<button class="delete">Delete</button></li>');
+        list.after('<li id="member"><input type="checkbox">' + listValues.text + '<button class="delete">Delete</button></li>');
     }
-
-
 
    $(function (){
        //event for invoking a function that calls other functions
