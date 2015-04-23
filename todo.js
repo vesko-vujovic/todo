@@ -66,11 +66,20 @@ $(document).ready(function(){
     function readDeserialized(deserialized)
     {
         var listValues = deserialized;
-        list.after('<li id="member"><input type="checkbox">' + listValues.input.replace('+', '&nbsp') + '<button class="delete">Delete</button></li>');
-        console.log()
+        list.after('<li id="member"><input type="checkbox">' + listValues.input.replace(/['+']/g,"&nbsp") + '<button class="delete">Delete</button></li>');
+
     }
 
-   $(function (){
+    //function that will call function for deserialize and reading cookie
+    function readCookieAfterLoading()
+    {
+        var des = $.deserialize($.cookie('vesko'));
+        console.log(des);
+        list.each(des, function(index, value){
+            list.after('<li id="member"><input type="checkbox">' + value + '<button class="delete">Delete</button></li>')
+        });
+    }
+
        //event for invoking a function that calls other functions
        $('#add').on('click', addListElement);
        //event for deleting a node
@@ -82,9 +91,8 @@ $(document).ready(function(){
           $('input:checked').parent().remove();
        });
 
-       $(window).bind(function(){
-           alert('do yu realy want to leave');
-       });
-   });
+    $(function() {
+       readCookieAfterLoading();
+    });
 
 });
