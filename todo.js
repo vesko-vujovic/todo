@@ -4,7 +4,7 @@ $(document).ready(function(){
     var list       = $('#list');
     var arrayOfObj = [];
     var obj;
-    
+
    //general function that will call other functions
    function addListElement(event)
    {
